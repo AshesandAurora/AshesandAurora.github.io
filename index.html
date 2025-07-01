@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ashes and Aurora</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Crimson+Pro:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: radial-gradient(ellipse at center, #1a002b 0%, #0b0018 100%);
+      color: #f3e9ff;
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #e0aaff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      text-shadow: 0 0 5px #8c6eff;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+      z-index: 10;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 4em;
+      margin-bottom: 0.3em;
+      text-shadow: 0 0 25px #e0aaff, 0 0 50px #9d4edd;
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 15px #c77dff, 0 0 30px #7209b7; }
+      50% { text-shadow: 0 0 35px #ff9fff, 0 0 60px #b5179e; }
+    }
+
+    p {
+      font-size: 1.4em;
+      max-width: 700px;
+      text-shadow: 0 0 10px #e0aaff;
+      animation: fadeIn 3s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9em;
+      color: #ccc;
+      z-index: 10;
+    }
+
+    #music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #c77dff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 999;
+      font-weight: bold;
+      box-shadow: 0 0 15px #c77dff;
+    }
+
+    #music-btn:hover {
+      background: #9d4edd;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://raw.githubusercontent.com/KodeNerd/spacey-starry-night/main/stars.png') repeat;
+      z-index: 1;
+      animation: moveStars 120s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 10000px; }
+    }
+
+    .fog {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.ibb.co/Z1fYs9T/fog2.png') repeat;
+      opacity: 0.05;
+      animation: fogMove 60s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes fogMove {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(20px); }
+      100% { transform: translateX(0); }
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="novels.html">Novels</a>
+  </nav>
+
+  <div class="stars"></div>
+  <div class="fog"></div>
+
+  <div class="container">
+    <h1>Ashes and Aurora</h1>
+    <p>A celestial bloom of stories rising from embers—where magic meets ink, and dreams unfold under violet skies.</p>
+  </div>
+
+  <button id="music-btn">Play Music</button>
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/12/04/audio_ea2b567d8b.mp3?filename=ethereal-vibes-126009.mp3" type="audio/mpeg">
+  </audio>
+
+  <footer>© 2025 Ashes and Aurora</footer>
+
+  <script>
+    const btn = document.getElementById('music-btn');
+    const music = document.getElementById('bg-music');
+    let isPlaying = false;
+
+    btn.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        btn.textContent = "Play Music";
+      } else {
+        music.play();
+        btn.textContent = "Pause Music";
+      }
+      isPlaying = !isPlaying;
+    });
+  </script>
+</body>
+</html>
