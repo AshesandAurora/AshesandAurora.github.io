@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,21 +17,62 @@
       flex-direction: column;
       justify-content: center;
       height: 100vh;
+      position: relative;
+      cursor: none;
+    }
+
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      z-index: 100;
+    }
+
+    nav a {
+      margin-left: 25px;
+      font-size: 1.2em;
+      font-weight: bold;
+      font-family: 'Georgia', serif;
+      text-decoration: none;
+      color: #ddaaff;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, #a56eff, #da77f2);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffb3ff, 0 0 20px #c77dff;
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
     h1 {
       font-size: 3em;
       margin-bottom: 0.2em;
+      text-shadow: 0 0 10px #c77dff;
     }
 
     p {
       font-size: 1.3em;
       max-width: 600px;
       margin: 0 auto;
-    }
-
-    .glow {
-      text-shadow: 0 0 5px #fff, 0 0 15px #e0aaff, 0 0 30px #c77dff;
+      text-shadow: 0 0 8px #e0aaff;
     }
 
     footer {
@@ -40,11 +82,53 @@
       font-size: 0.9em;
       color: #ccc;
     }
+
+    .moon-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle, #ffffff 40%, #caaaff 70%, transparent 90%);
+      border-radius: 50%;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s linear;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      to {
+        transform: translate(-50%, -50%) scale(1.3);
+      }
+    }
   </style>
 </head>
 <body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="novels.html">My Novels</a>
+  </nav>
+
   <h1 class="glow">Ashes and Aurora</h1>
   <p class="glow">A celestial bloom of stories rising from embers—where magic meets ink, and dreams unfold under violet skies.</p>
+
   <footer>© 2025 Ashes and Aurora</footer>
+
+  <div class="moon-cursor" id="moonCursor"></div>
+  <script>
+    const moon = document.getElementById('moonCursor');
+    document.addEventListener('mousemove', e => {
+      moon.style.left = `${e.clientX}px`;
+      moon.style.top = `${e.clientY}px`;
+    });
+  </script>
 </body>
 </html>
