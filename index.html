@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashes and Aurora</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Crimson+Pro:wght@400;700&display=swap');* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Crimson Pro', serif;
+  overflow: hidden;
+  background-color: #0b0018;
+  color: #f3e9ff;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('nebula.gif') center/cover no-repeat;
+  animation: slowPan 80s linear infinite;
+  z-index: -3;
+  opacity: 0.35;
+}
+
+@keyframes slowPan {
+  from { transform: scale(1) translate(0, 0); }
+  to { transform: scale(1.05) translate(-30px, -30px); }
+}
+
+.mist {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://i.ibb.co/FxVL4NS/mist.gif') center/cover no-repeat;
+  z-index: -2;
+  opacity: 0.2;
+}
+
+.firefly {
+  position: absolute;
+  background: #fff59d;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff59d;
+  animation: float 6s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0.2; }
+  50% { transform: translateY(-50px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.2; }
+}
+
+nav {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  z-index: 1000;
+}
+
+nav a {
+  color: #e0aaff;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-shadow: 0 0 6px #9d4edd;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 4em;
+  color: #f3e9ff;
+  text-shadow: 0 0 25px #c77dff, 0 0 40px #7209b7;
+  animation: fogRise 4s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fogRise {
+  from { transform: translateY(30px); opacity: 0; filter: blur(5px); }
+  to { transform: translateY(0); opacity: 1; filter: blur(0); }
+}
+
+p {
+  font-size: 1.4em;
+  max-width: 700px;
+  text-shadow: 0 0 10px #e0aaff;
+  opacity: 0;
+  animation: fogRise 5s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+  color: #ccc;
+  z-index: 5;
+}
+
+#music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #c77dff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 999;
+  font-weight: bold;
+  box-shadow: 0 0 15px #c77dff;
+}
+
+#music-btn:hover {
+  background: #9d4edd;
+}
+
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="novels.html">Novels</a>
+  </nav>  <div class="mist"></div>  <div class="container">
+    <h1>Ashes and Aurora</h1>
+    <p>A celestial bloom of stories rising from embers—where magic meets ink, and dreams unfold under violet skies.</p>
+  </div>  <!-- Fireflies -->  <script>
+    for (let i = 0; i < 25; i++) {
+      let firefly = document.createElement('div');
+      firefly.classList.add('firefly');
+      firefly.style.top = Math.random() * 100 + '%';
+      firefly.style.left = Math.random() * 100 + '%';
+      firefly.style.animationDelay = Math.random() * 6 + 's';
+      document.body.appendChild(firefly);
+    }
+  </script><button id="music-btn">Play Music</button> <audio id="bg-music" loop> <source src="music.mp3" type="audio/mpeg"> </audio>
+
+  <footer>© 2025 Ashes and Aurora</footer>  <script>
+    const btn = document.getElementById('music-btn');
+    const music = document.getElementById('bg-music');
+    let isPlaying = false;
+
+    btn.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        btn.textContent = "Play Music";
+      } else {
+        music.play();
+        btn.textContent = "Pause Music";
+      }
+      isPlaying = !isPlaying;
+    });
+  </script></body>
+</html>
